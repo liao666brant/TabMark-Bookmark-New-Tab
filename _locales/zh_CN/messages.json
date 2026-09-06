@@ -163,6 +163,14 @@
         "message": "您确定要删除 \"$1\" 吗？",
         "description": "确认删除项目的消息"
     },
+    "customWelcomeMessage": {
+        "message": "自定义欢迎语",
+        "description": "自定义欢迎语设置项标签"
+    },
+    "customWelcomeMessagePlaceholder": {
+        "message": "支持 {name} 占位符，留空则按时间段显示默认问候",
+        "description": "自定义欢迎语输入框占位符"
+    },
     "morningGreeting": {
         "message": "早上好👋",
         "description": "早上的问候语"

@@ -107,6 +107,14 @@
         "message": "Êtes-vous sûr de vouloir supprimer \"$1\" ?",
         "description": "Message de confirmation pour la suppression d'un élément"
     },
+    "customWelcomeMessage": {
+        "message": "Message de bienvenue personnalisé",
+        "description": "自定义欢迎语设置项标签"
+    },
+    "customWelcomeMessagePlaceholder": {
+        "message": "Utilisez {name} pour le nom d'utilisateur ; laissez vide pour le message par défaut selon l'heure",
+        "description": "自定义欢迎语输入框占位符"
+    },
     "morningGreeting": {
         "message": "Bonjour👋",
         "description": "Message de salutation du matin"

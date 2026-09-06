@@ -159,6 +159,14 @@
         "message": "폴더가 삭제되었습니다: ID=$1, 제목=$2",
         "description": "폴더 삭제 시의 로그 메시지"
     },
+    "customWelcomeMessage": {
+        "message": "사용자 지정 환영 메시지",
+        "description": "自定义欢迎语设置项标签"
+    },
+    "customWelcomeMessagePlaceholder": {
+        "message": "{name}이(가) 사용자 이름으로 대체됩니다. 비워 두면 시간대별 기본 인사가 표시됩니다",
+        "description": "自定义欢迎语输入框占位符"
+    },
     "morningGreeting": {
         "message": "좋은 아침👋",
         "description": "아침 인사"

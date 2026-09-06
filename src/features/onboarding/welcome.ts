@@ -10,8 +10,24 @@ let userName = localStorage.getItem('userName') || 'Sowhale'
 
 // 欢迎语显隐的内存缓存：initialize 读一次，storage 变化时同步，读取路径不再访问 storage
 let showWelcomeMessageEnabled = true
+// 自定义欢迎语：空字符串表示使用默认分段问候
+let customWelcomeMessage = ''
 // 最近一次由 manager 写入的欢迎语文本，用于识别外部改写
 let lastAppliedMessage: string | null = null
+
+function getStoredString(value: unknown): string {
+  return typeof value === 'string' ? value : ''
+}
+
+function getTimeGreeting(hours: number): string {
+  if (hours < 12) {
+    return getLocalizedMessage('morningGreeting')
+  }
+  if (hours < 18) {
+    return getLocalizedMessage('afternoonGreeting')
+  }
+  return getLocalizedMessage('eveningGreeting')
+}
 
 function getRgbChannels(color: string): readonly [number, number, number] | null {
   const matches = color.match(/\d+/g)
@@ -32,8 +48,9 @@ export const WelcomeManager = {
   } satisfies ColorCache,
 
   initialize(): void {
-    chrome.storage.sync.get(['showWelcomeMessage'], (result) => {
+    chrome.storage.sync.get(['showWelcomeMessage', 'customWelcomeMessage'], (result) => {
       showWelcomeMessageEnabled = result['showWelcomeMessage'] !== false
+      customWelcomeMessage = getStoredString(result['customWelcomeMessage']).trim()
       const welcomeElement = document.getElementById('welcome-message')
       if (welcomeElement) {
         welcomeElement.style.display = showWelcomeMessageEnabled ? '' : 'none'
@@ -46,11 +63,15 @@ export const WelcomeManager = {
         if (areaName !== 'sync') {
           return
         }
-        const change = changes['showWelcomeMessage']
-        if (change === undefined) {
-          return
+        const showChange = changes['showWelcomeMessage']
+        if (showChange !== undefined) {
+          showWelcomeMessageEnabled = showChange.newValue !== false
         }
-        showWelcomeMessageEnabled = change.newValue !== false
+        const customChange = changes['customWelcomeMessage']
+        if (customChange !== undefined) {
+          customWelcomeMessage = getStoredString(customChange.newValue).trim()
+          this.updateWelcomeMessage(false)
+        }
       })
 
       this.initializeColorCache()
@@ -61,21 +82,16 @@ export const WelcomeManager = {
 
   updateWelcomeMessage(checkVisibility = true): void {
     const hours = new Date().getHours()
-    let greeting: string
-    if (hours < 12) {
-      greeting = getLocalizedMessage('morningGreeting')
-    } else if (hours < 18) {
-      greeting = getLocalizedMessage('afternoonGreeting')
-    } else {
-      greeting = getLocalizedMessage('eveningGreeting')
-    }
+    const message = customWelcomeMessage !== ''
+      // 自定义欢迎语：{name} 占位符替换为用户名
+      ? customWelcomeMessage.replaceAll('{name}', userName)
+      : `${getTimeGreeting(hours)}, ${userName}`
 
     const welcomeElement = document.getElementById('welcome-message')
     if (!welcomeElement) {
       return
     }
 
-    const message = `${greeting}, ${userName}`
     welcomeElement.textContent = message
     lastAppliedMessage = message
     if (checkVisibility) {

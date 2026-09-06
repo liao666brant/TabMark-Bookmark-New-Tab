@@ -107,6 +107,14 @@
         "message": "Are you sure you want to delete \"$1\"?",
         "description": "Confirmation message for deleting an item"
     },
+    "customWelcomeMessage": {
+        "message": "Custom welcome message",
+        "description": "自定义欢迎语设置项标签"
+    },
+    "customWelcomeMessagePlaceholder": {
+        "message": "Use {name} for the user name; leave empty for the default time-based greeting",
+        "description": "自定义欢迎语输入框占位符"
+    },
     "morningGreeting": {
         "message": "Good morning👋",
         "description": "早上的问候语"

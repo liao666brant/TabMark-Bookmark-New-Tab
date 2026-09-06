@@ -159,6 +159,14 @@
         "message": "フォルダが削除されました：ID=$1、タイトル=$2",
         "description": "フォルダ削除時のログメッセージ"
     },
+    "customWelcomeMessage": {
+        "message": "カスタムウェルカムメッセージ",
+        "description": "自定义欢迎语设置项标签"
+    },
+    "customWelcomeMessagePlaceholder": {
+        "message": "{name} がユーザー名に置き換わります。空欄の場合は時間帯に応じたデフォルトの挨拶を表示",
+        "description": "自定义欢迎语输入框占位符"
+    },
     "morningGreeting": {
         "message": "おはようございます👋",
         "description": "朝の挨拶"

@@ -155,6 +155,14 @@
         "message": "資料夾已刪除：ID=$1，標題=$2",
         "description": "資料夾刪除時的日誌訊息"
     },
+    "customWelcomeMessage": {
+        "message": "自訂歡迎語",
+        "description": "自訂歡迎語設定項標籤"
+    },
+    "customWelcomeMessagePlaceholder": {
+        "message": "支援 {name} 佔位符，留空則按時間段顯示預設問候",
+        "description": "自訂歡迎語輸入框佔位符"
+    },
     "morningGreeting": {
         "message": "早上好👋",
         "description": "早上的問候語"

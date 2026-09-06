@@ -31,6 +31,7 @@
 
 ## 变更记录
 
+- 2026-09-06：新增自定义欢迎语——`customWelcomeMessage` 模块级缓存 + onChanged 同步，非空时替换默认分段问候并支持 `{name}` 占位符；文本仍经 `updateWelcomeMessage` 写入以维持 `lastAppliedMessage` 比对机制。
 - 2026-08-23：性能整改——取色缓存命中早退、渐变背景跳过采样、showWelcomeMessage 内存缓存、observer 去语言依赖、visibilitychange 立即刷新、提示样式单例复用、状态机后台标签页卡死修复、提示 DOM 改 createElement/textContent。
 - 2026-08-21：欢迎语刷新从常驻分钟 interval 改为对齐分钟边界的单次 setTimeout 链，页面隐藏时跳过刷新。
 - 2026-08-20：从根级页面脚本迁入 onboarding 功能目录。

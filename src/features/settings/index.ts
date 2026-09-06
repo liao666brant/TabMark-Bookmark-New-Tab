@@ -1,5 +1,6 @@
 // 导入所需的依赖
 import { ICONS } from '../../shared/icons';
+import { debounce } from 'radashi';
 import { getActiveBookmarksList } from '../bookmarks/folder-swiper';
 
 type Dimension = string | number;
@@ -33,6 +34,14 @@ function getStoredDimension(
   if (typeof value === 'string' && value.length > 0) return value;
   if (typeof value === 'number' && Number.isFinite(value)) return value;
   return defaultValue;
+}
+
+function getStoredString(
+  result: Readonly<Record<string, unknown>>,
+  key: string,
+): string {
+  const value = result[key];
+  return typeof value === 'string' ? value : '';
 }
 
 function coalesceInputFrame(apply: () => void): () => void {
@@ -136,6 +145,7 @@ class SettingsManager {
         'pageBottomSpacing',
         'showSearchBox',
         'showWelcomeMessage',
+        'customWelcomeMessage',
         'showFooter',
         'showHistoryLink',
         'showDownloadsLink',
@@ -831,6 +841,18 @@ class SettingsManager {
         welcomeMessage.style.display = isVisible ? '' : 'none';
       }
     });
+
+    // 自定义欢迎语：输入防抖落盘，welcome 模块经 storage.onChanged 即时应用
+    const customWelcomeInput = getInput('custom-welcome-message');
+    if (customWelcomeInput) {
+      customWelcomeInput.value = getStoredString(stored, 'customWelcomeMessage');
+      customWelcomeInput.addEventListener(
+        'input',
+        debounce({ delay: 300 }, () => {
+          chrome.storage.sync.set({ customWelcomeMessage: customWelcomeInput.value.trim() });
+        }),
+      );
+    }
 
     showFooterCheckbox.addEventListener('change', () => {
       const isVisible = showFooterCheckbox.checked;

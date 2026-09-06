@@ -107,6 +107,14 @@
         "message": "Sind Sie sicher, dass Sie \"$1\" löschen möchten?",
         "description": "Bestätigungsnachricht zum Löschen eines Elements"
     },
+    "customWelcomeMessage": {
+        "message": "Eigene Begrüßung",
+        "description": "自定义欢迎语设置项标签"
+    },
+    "customWelcomeMessagePlaceholder": {
+        "message": "{name} wird durch den Benutzernamen ersetzt; leer lassen für die Standardbegrüßung nach Tageszeit",
+        "description": "自定义欢迎语输入框占位符"
+    },
     "morningGreeting": {
         "message": "Guten Morgen👋",
         "description": "Morgengruß"
