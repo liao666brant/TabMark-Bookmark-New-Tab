@@ -34,6 +34,7 @@
 
 ## 变更记录
 
+- 2026-09-06：搜索建议 favicon URL 收敛到 `shared/favicon.ts`（`size=64`，移除无效的 `cache` 参数）。
 - 2026-08-23（三轮）：行为表（userSearchBehavior）内存缓存 + 防抖落盘 + onChanged 失效 + pagehide 兜底刷新（相关性计算不再逐键读 storage）；引擎开关重建改 300ms 防抖合并。
 - 2026-08-23：性能整改——focus/Sortable 去重、设置缓存、过期查询丢弃、去重 Map 化、Levenshtein 剪枝、favicon cache=1、下拉监听器不再累积、文本图标改 data URL、远程图标 Promise.any。
 - 2026-08-20：入口文件名收紧为 `dropdown.ts`。

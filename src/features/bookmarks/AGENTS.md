@@ -41,6 +41,7 @@
 
 ## 变更记录
 
+- 2026-09-06：书签卡 favicon URL 收敛到 `shared/favicon.ts`（`size=64`）。
 - 2026-08-23（二轮）：书签卡点击/右键改文档级委托（卡片零监听，dataset 携带 url）、侧边栏点击委托 + 子层级懒构建 + Sortable 按需绑定、displayBookmarks 序列一致跳过重建、删除 ColorCache v2 双轨（文件夹卡用恒定默认色）、懒渲染 promise 补 catch。
 - 2026-08-23：性能整改——启动只渲染激活 slide（其余滑入惰性渲染）、书签事件合流（quietPeriodMs=100）+ 浅比较替代 JSON.stringify、颜色缓存内存层（card-colors.ts）、右键菜单与侧边栏计数惰性化、scroll indicator 观察器自释放、hover 改 CSS。
 - 2026-08-21：固定目录切换改为 Swiper 垂直整屏滑动。

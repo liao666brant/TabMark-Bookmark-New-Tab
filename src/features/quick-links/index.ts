@@ -12,17 +12,10 @@ import type { QuickLink } from './storage';
 import { buildQuickLinks } from './shortcuts';
 import { renderQuickLinks } from './view';
 import { getSiteName } from './site-name';
+import { createFaviconUrl as faviconURL } from '../../shared/favicon';
 
 document.addEventListener('DOMContentLoaded', function () {
   const MAX_DISPLAY = 10;
-
-  function faviconURL(u: string): string {
-    const url = new URL(chrome.runtime.getURL("/_favicon/"));
-    url.searchParams.set("pageUrl", u);
-    url.searchParams.set("size", "32");
-    url.searchParams.set("cache", "1");
-    return url.toString();
-  }
 
   // 获取固定的快捷方式
   function getFixedShortcuts(): Promise<QuickLink[]> {

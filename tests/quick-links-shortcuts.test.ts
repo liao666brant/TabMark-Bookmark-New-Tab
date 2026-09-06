@@ -33,7 +33,7 @@ test('keeps fixed links and adds only distinct allowed history domains', () => {
   })
 
   assert.deepEqual(result, [
-    fixed,
+    { ...fixed, favicon: 'icon:https://fixed.example/' },
     {
       name: 'name:History',
       url: 'https://history.example/',

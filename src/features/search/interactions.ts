@@ -1,5 +1,6 @@
 import Sortable from 'sortablejs';
 import { SearchEngineManager, getSearchUrl, updateSearchEngineIcon } from './dropdown';
+import { createFaviconUrl } from '../../shared/favicon';
 
 type BookmarkNode = chrome.bookmarks.BookmarkTreeNode;
 type SearchSuggestion = {
@@ -1001,11 +1002,7 @@ export function initializeSearchInteractions(): void {
 
   // Add this function to fetch favicons
   function getFavicon(url: string, callback: (faviconUrl: string) => void) {
-    const faviconUrl = new URL(chrome.runtime.getURL('/_favicon/'));
-    faviconUrl.searchParams.set('pageUrl', url);
-    faviconUrl.searchParams.set('size', '32');
-    faviconUrl.searchParams.set('cache', '1');
-    const faviconHref = faviconUrl.toString();
+    const faviconHref = createFaviconUrl(url);
     const img = new Image();
     img.onload = function () {
       callback(faviconHref);

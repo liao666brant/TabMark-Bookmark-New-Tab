@@ -26,6 +26,7 @@ import {
 } from './page-parsers';
 import type { BookmarkColors } from './page-parsers';
 import { getIconHtml, ICONS, replaceIconsWithSvg } from '../../shared/icons';
+import { createFaviconUrl } from '../../shared/favicon';
 import { updateBookmarkCard } from './card-update';
 import { refreshBookmarkOrder, startBookmarkChangeSync } from './order-sync';
 import { initializeSearchInteractions } from '../search/interactions';
@@ -1270,7 +1271,7 @@ function createBookmarkCard(bookmark: BookmarkNode, index: number) {
   img.className = 'w-6 h-6 mr-2';
   img.loading = 'lazy';
   img.decoding = 'async';
-  img.src = `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(bookmarkUrl)}&size=32&cache=1`;
+  img.src = createFaviconUrl(bookmarkUrl);
 
   // 尝试从缓存获取颜色
   const cachedColors = getCachedCardColors(bookmark.id);

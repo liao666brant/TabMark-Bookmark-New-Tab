@@ -37,5 +37,6 @@
 
 ## 变更记录
 
+- 2026-09-06：favicon URL 收敛到 `shared/favicon.ts`（`size=64`）；`buildQuickLinks` 对固定项按当前模板重生成 favicon（派生数据，不再依赖 storage 持久化的旧 URL）。
 - 2026-08-23：性能整改——修复缓存加载顺序（P0）、黑名单种子一次性写入、qrcode 懒加载、占位符 `Math.max` 修复。
 - 2026-08-20：由单文件控制器拆分为数据、视图、菜单和对话框职责。

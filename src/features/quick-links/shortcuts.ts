@@ -22,7 +22,8 @@ export function buildQuickLinks(options: BuildQuickLinksOptions): QuickLink[] {
   for (const shortcut of options.fixedShortcuts) {
     const domain = new URL(shortcut.url).hostname
     if (!options.blacklist.includes(domain)) {
-      shortcuts.push(shortcut)
+      // favicon 是派生数据：按当前模板重生成，不依赖 storage 里持久化的旧 URL
+      shortcuts.push({ ...shortcut, favicon: options.faviconURL(shortcut.url) })
       uniqueDomains.add(domain)
     }
   }

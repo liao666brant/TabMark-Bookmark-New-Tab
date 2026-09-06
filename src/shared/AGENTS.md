@@ -28,10 +28,11 @@
 
 ## 相关文件清单
 
-- `global.d.ts`、`icons.ts`、`localization.ts`、`types.ts`
+- `global.d.ts`、`icons.ts`、`favicon.ts`、`localization.ts`、`types.ts`
 - `../main.ts`、`../_locales/`
 
 ## 变更记录
 
+- 2026-09-06：新增 `favicon.ts` 统一 MV3 `_favicon/` URL 构造（`size=64`，无 `cache` 参数——该参数在 Chromium 中不存在）；快捷链接、书签、搜索建议全部收敛到该 helper。
 - 2026-08-23：修正测试引用（task4-typescript-entry 已并入 `tests/icons.test.ts`）与多语言目录描述。
 - 2026-08-20：跨模块文件从根级迁入 `shared`。

@@ -1,5 +1,6 @@
 import { evictCachedCardColors, setCachedCardColors } from './card-colors'
 import type { BookmarkColors } from './page-parsers'
+import { createFaviconUrl } from '../../shared/favicon'
 
 type ColorHandlers = {
   readonly getColors: (image: HTMLImageElement) => BookmarkColors
@@ -39,7 +40,7 @@ export function updateBookmarkCard(
   if (!image) return
 
   evictCachedCardColors(bookmarkId)
-  image.src = `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(newUrl)}&size=32&cache=1`
+  image.src = createFaviconUrl(newUrl)
   image.onload = () => {
     const colors = handlers.getColors(image)
     handlers.applyColors(bookmarkCard, colors)
